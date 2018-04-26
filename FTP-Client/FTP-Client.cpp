@@ -1,6 +1,7 @@
 // FTP-Client.cpp : Defines the entry point for the console application.
 //
 
+
 #include "stdafx.h"
 #include "FTP-Client.h"
 #include <afxsock.h>
@@ -8,6 +9,8 @@
 #define new DEBUG_NEW
 #endif
 
+
+#define _CRT_SECURE_NO_WARNINGS
 
 // The one and only application object
 
@@ -45,10 +48,45 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 			// Ket noi den Server
 			if (Client.Connect(_T("127.0.0.1"), 21) != 0)
 			{
+				
 				cout << "Ket noi toi Server thanh cong !!!" << endl << endl;
 
-				char ClientMsg[100];
-				int MsgSize;
+				char ClientMsg[1000];
+				int MsgSize = 265;
+				char *temp;
+				string str_tmp;
+				//Receive welcome message
+				temp = new char[MsgSize + 1];
+				Client.Receive((char*)temp, MsgSize, 0);
+
+				temp[MsgSize] = '\0';
+				cout << "Server: " << temp << endl;
+
+				cout << "- Input Username: ";
+				cin.getline(temp, 24);
+				str_tmp = "USER " + string(temp);
+		
+				Client.Send(str_tmp.c_str(), str_tmp.length()+1, 0);
+				
+				//Receive message
+				temp = new char[MsgSize + 1];
+				Client.Receive((char*)temp, MsgSize, 0);
+
+				// In thong diep ra
+				temp[MsgSize] = '\0';
+				cout << "Server: " << temp << endl;
+
+				cout << "Input password: ";
+				cin.getline(temp, 24);
+				str_tmp = "PASS " + string(temp);
+
+				Client.Send(str_tmp.c_str(), str_tmp.length() + 1, 0);
+
+				//Receive message
+				temp = new char[MsgSize + 1];
+				Client.Receive((char*)temp, MsgSize, 0);
+
+				cout << temp;
 
 				do
 				{

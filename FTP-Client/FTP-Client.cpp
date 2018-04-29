@@ -7,6 +7,7 @@
 #include <afxsock.h>
 #ifdef _DEBUG
 #define new DEBUG_NEW
+#define MAX 1000
 #endif
 
 
@@ -52,25 +53,24 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 				cout << "Ket noi toi Server thanh cong !!!" << endl << endl;
 
 				char ClientMsg[1000];
-				int MsgSize = 265;
+				int MsgSize = 0;
 				char *temp;
 				string str_tmp;
 				//Receive welcome message
-				temp = new char[MsgSize + 1];
-				Client.Receive((char*)temp, MsgSize, 0);
-
-				temp[MsgSize] = '\0';
+				temp = new char[MAX];
+				MsgSize=Client.Receive((char*)temp, MAX, 0);
+				temp[MsgSize + 1] = '\0';
 				cout << "Server: " << temp << endl;
+
 
 				cout << "- Input Username: ";
 				cin.getline(temp, 24);
 				str_tmp = "USER " + string(temp);
 		
-				Client.Send(str_tmp.c_str(), str_tmp.length()+1, 0);
-				
+				Client.Send(str_tmp.c_str(), str_tmp.length() + 1, 0);
 				//Receive message
-				temp = new char[MsgSize + 1];
-				Client.Receive((char*)temp, MsgSize, 0);
+				temp = new char[MAX];
+				MsgSize = Client.Receive((char*)temp, MsgSize, 0);
 
 				// In thong diep ra
 				temp[MsgSize] = '\0';
@@ -83,9 +83,9 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 				Client.Send(str_tmp.c_str(), str_tmp.length() + 1, 0);
 
 				//Receive message
-				temp = new char[MsgSize + 1];
-				Client.Receive((char*)temp, MsgSize, 0);
-
+				temp = new char[MAX];
+				MsgSize = Client.Receive((char*)temp, MsgSize, 0);
+				temp[MsgSize] = '\0';
 				cout << temp;
 
 				do

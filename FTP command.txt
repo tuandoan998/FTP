@@ -1,15 +1,22 @@
 1.Login : 
-2.List folder in server (ls,dir) :
-3.Upload a file (put) : 
-4.Download a file (get) : 
-5.Upload many files (mput) :
-6.Download many files (mget) :
-7.Change path in server (cd) : 
-8.Change path in client (lcd) :
-9.Delete a file in server (delete) :
-10.Delete many files in server (mdelete) :
-11.Create a folder in server (mkdir) : 
-12.Delete a empty folder in server (rmdir) : 
-13.Show current path in server (pwd) :
-14.Passive state (passive) :
-15.Get off server (quit,exit) :
+2.List folder in server (ls,dir) 	:
+3.Upload a file (put) 				: 
+4.Download a file (get) 			: 
+5.Upload many files (mput) 			:
+6.Download many files (mget) 		:
+7.Change path in server (cd) 		: send "cwd directory" - done 
+8.Change path in client (lcd)		 		:
+9.Delete a file in server (delete) 			:
+10.Delete many files in server (mdelete) 	:
+11.Create a folder in server (mkdir) 		: 
+12.Delete a empty folder in server (rmdir) 	: 
+13.Show current path in server (pwd) 		:
+14.Passive state (passive) 					:
+15.Get off server (quit,exit) 				:
+
+
+
+*note:
+	- Always having a thread to control the connection between server and client.
+	- Create a User class within username, password?
+	

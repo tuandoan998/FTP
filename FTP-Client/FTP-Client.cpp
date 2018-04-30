@@ -17,7 +17,7 @@
 
 CWinApp theApp;
 
-using namespace std;
+
 
 int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 {
@@ -80,9 +80,18 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 				do
 				{
 					//code here
-					cin >> ClientMsg;
+					cout << "ftp > ";
+					getline(cin, str_tmp);
+
+					str_tmp = getCommand(str_tmp);
+
+					Client.Send(str_tmp.c_str(), str_tmp.length() + 1, 0);
+					temp = new char[MAX_LENGTH + 1];
+					Client.Receive((char*)temp, MAX_LENGTH, 0);
+					DisplayMessage(temp);
+
 					
-				} while (1);
+				} while (str_tmp.compare("quit")!=0);
 			}
 			else
 			{

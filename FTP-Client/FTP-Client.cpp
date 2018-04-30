@@ -58,11 +58,9 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 				//Receive welcome message
 				temp = new char[MsgSize + 1];
 				Client.Receive((char*)temp, MsgSize, 0);
+				DisplayMessage(temp);
 
-				temp[MsgSize] = '\0';
-				cout << "Server: " << temp << endl;
-
-				cout << "- Input Username: ";
+				cout << "username: ";
 				cin.getline(temp, 24);
 				str_tmp = "USER " + string(temp);
 		
@@ -71,12 +69,9 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 				//Receive message
 				temp = new char[MsgSize + 1];
 				Client.Receive((char*)temp, MsgSize, 0);
+				DisplayMessage(temp);
 
-				// In thong diep ra
-				temp[MsgSize] = '\0';
-				cout << "Server: " << temp << endl;
-
-				cout << "Input password: ";
+				cout << "password: ";
 				cin.getline(temp, 24);
 				str_tmp = "PASS " + string(temp);
 
@@ -86,12 +81,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 				temp = new char[MsgSize + 1];
 				Client.Receive((char*)temp, MsgSize, 0);
 
-				cout << temp;
-
-				do
-				{
-					cin >> ClientMsg;
-				} while (1);
+				DisplayMessage(temp);
 
 			}
 			else

@@ -6,8 +6,8 @@
 6.Download many files (mget) 		:
 7.Change path in server (cd) 		: send "cwd directory" - done 
 8.Change path in client (lcd)		 		:
-9.Delete a file in server (delete) 			:
-10.Delete many files in server (mdelete) 	:
+9.Delete a file in server (delete) 			: send "del filename.extension" - done
+10.Delete many files in server (mdelete) 	: send "mdel fileA.txt fileB.txt" - request action - not yet done
 11.Create a folder in server (mkdir) 		: 
 12.Delete a empty folder in server (rmdir) 	: 
 13.Show current path in server (pwd) 		:

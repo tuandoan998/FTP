@@ -44,13 +44,15 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 				return FALSE;
 			}
 			
+			int	clientPort = 6110;
 			CSocket Client;
-			Client.Create(0, SOCK_STREAM, NULL);//auto choose client port, TCP type, default clinet IP
+			Client.Create(clientPort, SOCK_STREAM, _T("127.0.0.1"));//auto choose client port, TCP type,  CAsyncSocket instance should listen for client activity on all network interfaces.
 			// Ket noi den Server
 			if (Client.Connect(_T("127.0.0.1"), 21) != 0)
 			{
 				
 				cout << "Ket noi toi Server thanh cong !!!" << endl << endl;
+				CString addr;
 
 				char ClientMsg[MAX_LENGTH];
 				char *temp;
@@ -77,6 +79,22 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 				Client.Receive((char*)temp, MAX_LENGTH, 0);
 				DisplayMessage(temp);
 
+				////ls
+				//clientPort++;
+				//str_tmp = "EPRT |1|127.0.0.1|" + to_string(clientPort) + "|";
+				//Client.Send(str_tmp.c_str(), str_tmp.length() + 1, 0);
+				//temp = new char[MAX_LENGTH + 1];
+				//Client.Receive((char*)temp, MAX_LENGTH, 0);
+				//DisplayMessage(temp);
+				//clientPort++;
+				//str_tmp = "NLST";
+				//Client.Send(str_tmp.c_str(), str_tmp.length() + 1, 0);
+				//while (1) {
+				//	temp = new char[MAX_LENGTH + 1];
+				//	Client.Receive((char*)temp, MAX_LENGTH, 0);
+				//	DisplayMessage(temp);
+				//}
+				//
 				do
 				{
 					//code here
@@ -91,7 +109,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 					DisplayMessage(temp);
 
 					
-				} while (str_tmp.compare("quit")!=0);
+				} while (str_tmp.compare("bye")!=0);
 			}
 			else
 			{

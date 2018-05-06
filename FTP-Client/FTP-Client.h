@@ -26,7 +26,25 @@ enum cmd
 	CMD_EN_DEL, 
 	CMD_EN_MDEL
 };
+//return dataport from pasv respone message: (127,0,0,0,a,b)
+long long getDataPort(const string str)
+{
+	int pos1 = 0; int count = 0;
+	for (; pos1 < str.length() && count < 4; pos1++)
+	{
+		if (str.at(pos1) == ',')
+			count++;
 
+	}
+	
+	int pos2 = str.find_last_of(',');
+	string a_str = str.substr(pos1, pos2-pos1);
+	pos1 = str.find_first_of(')');
+	string b_str = str.substr(pos2+1, pos1-pos2);
+	int a = atoi(a_str.c_str());
+	int b = atoi(b_str.c_str());
+	return a * 256 + b;
+}
 int getCmdCode(const string strCmd)
 {
 	if (strCmd.compare(CMD_STR_CD))
@@ -65,6 +83,9 @@ string getCommand(const string strCMD)
 
 	if (orgCMD.compare("cd") == 0)
 		orgCMD = "CWD";
+	else if (orgCMD.compare("del") == 0)
+		orgCMD = "DELE";
+
 
 	orgCMD += strCMD.substr(space_pos, strCMD.length());
 

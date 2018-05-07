@@ -1,6 +1,5 @@
-# FTP client project
 
-Programming language :
+# Programming language :
 C/C++
 Library :
   afxsock.h

@@ -102,13 +102,28 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 				dataClient.Receive((char*)temp, MAX_LENGTH, 0);
 				DisplayMessage(temp);
 
+				//pwd
+				str_tmp = "PWD";
+				Client.Send(str_tmp.c_str(), str_tmp.length() + 1, 0);
+				temp = new char[MAX_LENGTH + 1];
+				Client.Receive((char*)temp, MAX_LENGTH, 0);
+				DisplayMessage(temp);
 
+				//quit
+				str_tmp = "QUIT";
+				Client.Send(str_tmp.c_str(), str_tmp.length() + 1, 0);
+				temp = new char[MAX_LENGTH + 1];
+				Client.Receive((char*)temp, MAX_LENGTH, 0);
+				DisplayMessage(temp);
+				Sleep(5000);		// Dung lai de xem thoi
+				Client.Close();
+				dataClient.Close();
 
-				while (1) {
+				/*while (1) {
 					temp = new char[MAX_LENGTH + 1];
 					Client.Receive((char*)temp, MAX_LENGTH, 0);
 					DisplayMessage(temp);
-				}
+				}*/
 				
 				//do
 				//{
@@ -130,9 +145,6 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 			{
 				cout << "Khong the ket noi den Server !!!" << endl;
 			}
-
-			// Dong ket noi
-			Client.Close();
 		}
 	}
 	else

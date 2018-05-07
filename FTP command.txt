@@ -10,9 +10,9 @@
 10.Delete many files in server (mdelete) 	: send "mdel fileA.txt fileB.txt" - request action - not yet done
 11.Create a folder in server (mkdir) 		: 
 12.Delete a empty folder in server (rmdir) 	: 
-13.Show current path in server (pwd) 		:
-14.Passive state (passive) 					:
-15.Get off server (quit,exit) 				:
+13.Show current path in server (pwd) 		: send "pwd" - done
+14.Passive state (passive) 					: send "pasv" - done
+15.Get off server (quit,exit) 				: send "quit" - done
 
 
 
@@ -20,3 +20,29 @@
 	- Always having a thread to control the connection between server and client.
 	- Create a User class within username, password?
 	
+
+-----------------------------------------------------------------------------------------
+FTP commands - Overview
+
+simple commands
+//   QUIT <CRLF>
+//   PASV <CRLF>
+//   PWD  <CRLF>
+//   PORT <SP> <host-port> <CRLF>
+//   TYPE <SP> <type-code> <CRLF>
+//   CWD  <SP> <pathname> <CRLF>
+//   MKD  <SP> <pathname> <CRLF>
+//   HELP [<SP> <string>] <CRLF>
+//   DELE <SP> <pathname> <CRLF>
+//   MODE <SP> <mode-code> <CRLF>
+
+// commands for logon sequence
+//   USER <SP> <username> <CRLF>
+//   PASS <SP> <password> <CRLF>
+
+//   REST <SP> <marker> <CRLF>
+//   LIST [<SP> <pathname>] <CRLF>
+//   NLST [<SP> <pathname>] <CRLF>
+
+// non RFC-Commands
+//   SIZE <SP> <pathname> <CRLF>

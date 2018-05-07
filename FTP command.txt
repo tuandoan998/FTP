@@ -29,14 +29,13 @@
 			send DELE filename	
 11.Create a folder in server (mkdir) 		: 
 12.Delete a empty folder in server (rmdir) 	: 
-13.Show current path in server (pwd) :
+13.Show current path in server (pwd) : send "PWD" - done
 		
 14.Passive state (passive) :
 		//Sang edited
 		send PASV
-15.Get off server (quit,exit) 	:
-		//sang edited
-		send QUIT
+15.Get off server (quit,exit) 	: send "QUIT" - done
+		
 		
 *note:
 	- Always having a thread to control the connection between server and client.
